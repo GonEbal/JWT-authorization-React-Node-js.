@@ -11,10 +11,16 @@ const App:FC = () => {
       store.checkAuth()
     }
   }, [])
+
+  if (!store.isAuth) {
+    return (
+      <LoginForm />
+    )
+  }
   return (
     <div className="App">
       <h1>{store.isAuth ? `User is authorized ${store.user.email}` : 'Please Log In or Sign Up'}</h1>
-      <LoginForm />
+      <button onClick={() => store.logout()}>Log Out</button>
     </div>
   );
 }
